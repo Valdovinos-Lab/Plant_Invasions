@@ -1,0 +1,6 @@
+# Ignore mac system files
+.DS_store
+
+# Ignore python and R checkpoints
+.Rhistory
+.ipynb_checkpoints
