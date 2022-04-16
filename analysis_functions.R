@@ -2,6 +2,8 @@
 # R functions for simulation analysis.
 # Author:
 #   Sabine Dritz - sjdritz@ucdavis.edu
+# Date:
+#   4/16/2022
 ##############################################################################
 
 build_network_table_data <- function(networks) {
