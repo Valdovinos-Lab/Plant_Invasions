@@ -9,11 +9,6 @@
 build_network_table_data <- function(networks) {
   
   ############################################################################
-  # Goal: 
-  #   To build a table of network statistics characterizing qualitative and 
-  #   quantitative network structure before and after species invasion, as well 
-  #   the characteristics of invasive species.
-  
   # Data:
   #   All data: 
   #     - first half of columns are data from time step 10000 just before the invasion
@@ -28,6 +23,11 @@ build_network_table_data <- function(networks) {
   #     - column ID: unique pollinator species in the network
   #     - row ID: unique plant species in the network (first row is invasive species)
   #     - values are the foraging effort allocated by a given pollinator to a given plant
+  
+  # Output:
+  #   A table of network statistics characterizing qualitative and 
+  #   quantitative network structure before and after species invasion, as well 
+  #   the characteristics of invasive species.
   ############################################################################
 
   # Read in all the data
@@ -177,26 +177,24 @@ build_network_table_data <- function(networks) {
 compare_invasion_success <- function() {
 
   ##############################################################################
-  # Goal:
-  #   To compare rate of invasion success of each of the three invasive species
-  #   types.
-  
   # Data:
   #   network_data: table of all network statistics characterizing species invasions
+  
+  # Output:
+  #   A bar plot of the rate of invasion success of 
+  #   each of the three invasive species types.
   ##############################################################################
   
   # read in network data
   network_data <- read.csv("network_table_data.csv", header = TRUE)
-  network_data_m3 <- network_data[network_data$death_case == 3,]
-  network_data_m3_l1 <- network_data_m3[network_data_m3$InvP_k_alg == 1,] 
   inv_types <- c(3, 4, 8)
   
   success_rate <- c(0,0,0)
   for (inv_type in 1:length(inv_types)) {
-    inv_data <- network_data_m3_l1[network_data_m3_l1$inv_type == inv_types[inv_type],]
+    inv_data <- network_data[network_data$inv_type == inv_types[inv_type],]
     success_rate[inv_type] <-  sum(inv_data$InvP_inv == 1) / nrow(inv_data) 
   }
-  png("./figures/invasion_success_rate.png")
+  png("./figures/barplot/invasion_success_rate.png")
   barplot(success_rate)
   dev.off()
 }
@@ -204,10 +202,6 @@ compare_invasion_success <- function() {
 compare_network_structure <- function() {
   
   ##############################################################################
-  # Goal:
-  #   To analyze the effect of species invasions on native plans and pollinators
-  #   and on the quantitative network structure of foraging efforts.
-  
   # Data:
   #   network_data: table of all network statistics characterizing species invasions,
   #   - data was divided to only consider simulations where a species successfully 
@@ -222,13 +216,16 @@ compare_network_structure <- function() {
   #     -to analyze the effect on quantitative network structure, tests were
   #       performed separately for different invader types (3, 4, 8) and different
   #       network groups (S=40, C=0.25), (S=90, C=0.15), (S=200, C=0.06)
+  
+  # Output:
+  #   Results of Wilcoxon Rank Sum test and box plots showing the effect of 
+  #   species invasions on native plans and pollinators and on the quantitative 
+  #   network structure of foraging efforts.
   ##############################################################################
   
   # read in network data
   network_data <- read.csv("network_table_data.csv", header = TRUE)
-  network_data_m3 <- network_data[network_data$death_case == 3,]
-  network_data_m3_l1 <- network_data_m3[network_data_m3$InvP_k_alg == 1,]
-  network_data_m3_l1_inv <- network_data_m3_l1[network_data_m3_l1$InvP_inv == 1,]
+  network_data_inv <- network_data[network_data$InvP_inv == 1,]
   inv_types <- c(3, 4, 8)
   net_groups <- c(400, 800, 1200)
   
@@ -238,7 +235,7 @@ compare_network_structure <- function() {
   for (inv_type in 1:length(inv_types)) {
     
     # subset data for only one invader type
-    inv_data <- network_data_m3_l1_inv[network_data_m3_l1_inv$inv_type == inv_types[inv_type],]
+    inv_data <- network_data_inv[network_data_inv$inv_type == inv_types[inv_type],]
     
     if(nrow(inv_data) > 1) {
       print(paste("Invader: ", inv_types[inv_type]))
@@ -293,11 +290,6 @@ compare_network_structure <- function() {
 compare_init_connected_pol_density <- function() {
   
   ##############################################################################
-  # Goal: 
-  #   To analyze the relationship between invasive species degree and the total
-  #   initial connected pollinator density as well as the relationship between
-  #   total initial connected pollinator density and invasion success
-  
   # Data:
   #   network_data: 
   #     - table of all network statistics characterizing species invasions
@@ -308,20 +300,43 @@ compare_init_connected_pol_density <- function() {
   #    varies across the invasive specie's degree
   #   -determining whether the initial total connected pollinator abundance 
   #    varies between successful and unsuccessful invasions
+  
+  # Output: 
+  #   Results of Kruskal-Wallis Rank Sum Test and box plots showing the 
+  #   relationship between the total initial connected pollinator density and
+  #   invasive species' degree and invasion success
   ##############################################################################
   
   # read in network data
   network_data <- read.csv("network_table_data.csv", header = TRUE)
+  inv_types <- c(3, 4, 8)
   
   print("Results of the Kruskal Wallace Rank Sum Test for significant variation in initial total connected pollinator density across the following groups: ")
   cat("\n")
   
-  #performing kruskal's test
-  result <- tidy_stats(kruskal.test(init_A ~ InvP_k, data = network_data))
-  print(paste("Invasive species degree, p-value: ", result$statistics$p))
+  for (inv_type in 1:length(inv_types)) {
+    
+    # subset data for only one invader type
+    inv_data <- network_data_inv[network_data_inv$inv_type == inv_types[inv_type],]
+    
+    if(nrow(inv_data) > 1) {
+      
+      #performing kruskal's test
+      result <- tidy_stats(kruskal.test(init_A ~ InvP_k, data = network_data))
+      print(paste("Invasive species degree, p-value: ", result$statistics$p))
+      png(paste("./figures/boxplots/init_connected_pol_vs_inv_K_i", inv_types[inv_type], ".png", sep = ""))
+      boxplot(network_data$init_A ~ network_data$InvP_K)
+      dev.off()
+      cat("\n")
+      
+      result <- tidy_stats(kruskal.test(init_A ~ InvP_inv, data = network_data))
+      print(paste("Invasion success, p-value: ", result$statistics$p))
+      png(paste("./figures/boxplots/init_connected_pol_vs_inv_success_i", inv_types[inv_type], ".png", sep = ""))
+      boxplot(network_data$init_A ~ network_data$InvP_K)
+      dev.off()
+    }
+  }
   
-  result <- tidy_stats(kruskal.test(init_A ~ InvP_inv, data = network_data))
-  print(paste("Invasion success, p-value: ", result$statistics$p))
 }
 
 
