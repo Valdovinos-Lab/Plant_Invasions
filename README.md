@@ -88,12 +88,12 @@ compare_init_connected_pol_density()
 * Generates a barplot comparing the rate of invasion frequency for each of the three invader types.
 
 ```figures/boxplots``` 
-* Generates boxplots as well as results from Wilcoxon Rank Sum Tests comparing native plant visitation and quantitative network structure before and after species invasions for each invader type:
+* Generates boxplots as well as results from Wilcoxon Rank Sum Tests comparing the following before and after species invasions for each invader type:
   * ```indirect_visit_quality_i*.png```: compares quality of visits to plant species indirectly connected to the invasive species
   * ```indirect_visit_quantity_i*.png```: compares quantity of visits to plant species indirectly connected to the invasive species
   * ```wNODF_i*.png```: compares withe weighted nestedness of the network of foraging preferences
   * ```wMod_i*.png```: compares withe weighted modularity of the network of foraging preferences
-* Generates boxplots as well as results from a Kruskal-Wallace Rank Sum Testcomparing initial total connected pollinator density for each invader across the following groups for each invader type:
+* Generates boxplots as well as results from a Kruskal-Wallace Rank Sum Test comparing the following for each invader type:
   * ```init_connected_pol_vs_inv_K_i*.png```: compares the total initial connected pollinator density across invasive species' degree
   * ```init_connected_pol_vs_inv_success_i*.png```: compares the total initial connected pollinator density to invasion success
 
