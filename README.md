@@ -91,8 +91,8 @@ compare_init_connected_pol_density()
 * Generates boxplots as well as results from Wilcoxon Rank Sum Tests comparing the following before and after species invasions for each invader type:
   * ```indirect_visit_quality_i*.png```: compares quality of visits to plant species indirectly connected to the invasive species
   * ```indirect_visit_quantity_i*.png```: compares quantity of visits to plant species indirectly connected to the invasive species
-  * ```wNODF_i*.png```: compares withe weighted nestedness of the network of foraging preferences
-  * ```wMod_i*.png```: compares withe weighted modularity of the network of foraging preferences
+  * ```wNODF_i*_group*.png```: compares withe weighted nestedness of the network of foraging preferences for each group of networks
+  * ```wMod_i*_group*.png```: compares withe weighted modularity of the network of foraging preferences for each group of networks
 * Generates boxplots as well as results from a Kruskal-Wallace Rank Sum Test comparing the following for each invader type:
   * ```init_connected_pol_vs_inv_K_i*.png```: compares the total initial connected pollinator density across invasive species' degree
   * ```init_connected_pol_vs_inv_success_i*.png```: compares the total initial connected pollinator density to invasion success
