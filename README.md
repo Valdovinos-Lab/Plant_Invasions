@@ -25,20 +25,8 @@ run(networks)
 
 ### Outputs
 
-***Numerical Data***
-The numerical output from these simulations will be written to the ```data``` folder. It includes the following files for which the first half of columns are from time step 10000, just before species invasion after the original network has equilibrated, the second half of columns are from time step 20000, at the end of the simulation.
-* Plant data (files starting with "P_")
-  * Each row is a unique plant species in the network, the first row is the invasive species
-  * Columns are as follows: (extinct, plant density, reward density, total pollination events, quantity of visits, quality of visits, foraging effort) x2
-* Pollinator data (files starting with "A_"
-  * Each row is a unique pollinator species in the network
-  * Columns are as follows: (extinct, pollinator density, total visitation events) x2
-* Pollinator foraging preference data (files starting with "Alpha_")
-  * Each row is a uniqe plant species in the network, the first row is the invasive species x2
-  * Each column is a unique pollinator species in the network
-  * Values are the proportional foraging effor a pollinator allocates to that plant
-
 ***Time Series***
+
 Additionally, graphical time series are produced for the first simulation in which a successful invasion occurs writted to the ```figures/timeseries/``` folder. These figures highlight the transient dynamics occuring during the 1200 timesteps directly after species introduction.
 * Plant density (files starting with "plant_density_"
   * Includes the density of the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
@@ -52,6 +40,20 @@ Additionally, graphical time series are produced for the first simulation in whi
   * Includes the quality of visits recieved by the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
 * Pollinator density (file starting with "pol_density_"
   * Includes the density of all pollinator species visiting the invasive plant (in black) and all other pollinator species (in grey)
+
+***Numerical Data***
+
+The numerical output from these simulations will be written to the ```data``` folder. It includes the following files for which the first half of columns are from time step 10000, just before species invasion after the original network has equilibrated, the second half of columns are from time step 20000, at the end of the simulation. This data is used later for the analysis.
+* Plant data (files starting with "P_")
+  * Each row is a unique plant species in the network, the first row is the invasive species
+  * Columns are as follows: (extinct, plant density, reward density, total pollination events, quantity of visits, quality of visits, foraging effort) x2
+* Pollinator data (files starting with "A_"
+  * Each row is a unique pollinator species in the network
+  * Columns are as follows: (extinct, pollinator density, total visitation events) x2
+* Pollinator foraging preference data (files starting with "Alpha_")
+  * Each row is a uniqe plant species in the network, the first row is the invasive species x2
+  * Each column is a unique pollinator species in the network
+  * Values are the proportional foraging effor a pollinator allocates to that plant
 
 ## Analysis 
 
