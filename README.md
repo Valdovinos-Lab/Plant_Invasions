@@ -6,9 +6,9 @@ As described in the paper, this experiment simulates the introduction of a singl
 
 Included are 1200 predefined networks generated through Thebalt and Fontain's stochastic algorithm. These are composed of three groups of 400 network centered on three points along the empirical species richness and connectance relationship (details here).
 
-# Simulating species invasions
+## Simulating species invasions
 
-To perform a species invasion, run "run.m" in matlab with the range of neworks you want to perform the simulation on as an input. To limit computational runtime, species invasions are only perfomed for mortality case 3 (where plants and animals have a low mortality) and for invader types 3 (specialists that are high reward producing), 4 (specialists that are high reward and pollen producing), and 8 (generalists that are high reward and pollen producing). From our analysis we found that these were the only cases for which successful invasions occured. Additionally, simulations are only performed with attachment algorithm 1 (random attachment) because the results observed for each attachment algorithm were qualitatively similar. Therefore to run the analysis it is only necessary to specificy the set of networks over which you want to perform species invasions. 
+To perform a species invasion, run ```run(networks)``` in matlab with the range of neworks you want to perform the simulation on as an input. To limit computational runtime, species invasions are only perfomed for mortality case 3 (where plants and animals have a low mortality) and for invader types 3 (specialists that are high reward producing), 4 (specialists that are high reward and pollen producing), and 8 (generalists that are high reward and pollen producing). From our analysis we found that these were the only cases for which successful invasions occured. Additionally, simulations are only performed with attachment algorithm 1 (random attachment) because the results observed for each attachment algorithm were qualitatively similar. Therefore to run the analysis it is only necessary to specificy the set of networks over which you want to perform species invasions. 
 
 ```matlab
 % To perform the simulation on a single network
@@ -23,6 +23,7 @@ networks = 1:1:1200
 run(networks)
 ```
 
+### Outputs
 The numerical output from these simulations will be written to the "data" folder. It includes the following files:
 * Plant data (files starting with "P_")
   * Each row is a unique plant species in the network, the first row is the invasive species
@@ -51,7 +52,7 @@ Additionally, graphical time series are produced for the first simulation in whi
 * Pollinator density (file starting with "pol_density_"
   * Includes the density of all pollinator species visiting the invasive plant (in black) and all other pollinator species (in grey)
 
-# Analysis 
+## Analysis 
 
 To reproduce the analysis from our experiment, run "run_analysis.R" in R. In this script there is a spot to again specify which networks were included in the analysis.
 
@@ -72,10 +73,12 @@ compare_network_structure()
 compare_init_connected_pol_density()
 ```
 
-```R build_network_table_data()``` generates "network_table_data.csv" which includes a suite of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
+### Outputs
 
-```R compare_invasion_success()``` generates a barplot comparing the rate of invasion frequency for each of the three invader types.
+```build_network_table_data()``` generates "network_table_data.csv" which includes a suite of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
 
-```R compare_network_structure()``` generates boxplots comparing native plant visitation and quantitative network structure before and after species invasions as well as results from Wilcoxon Rank Sum Tests.
+```compare_invasion_success()``` generates a barplot comparing the rate of invasion frequency for each of the three invader types.
 
-```R compare_init_connected_pol_density()``` generates boxplots comparing the initial total connected pollinator abundance across invasie species degree and invasion success as well as results from a Kruskal-Wallace Rank Sum Test. 
+```compare_network_structure()``` generates boxplots comparing native plant visitation and quantitative network structure before and after species invasions as well as results from Wilcoxon Rank Sum Tests.
+
+```compare_init_connected_pol_density()``` generates boxplots comparing the initial total connected pollinator abundance across invasie species degree and invasion success as well as results from a Kruskal-Wallace Rank Sum Test. 
