@@ -240,25 +240,27 @@ compare_network_structure <- function() {
     # subset data for only one invader type
     inv_data <- network_data_m3_l1_inv[network_data_m3_l1_inv$inv_type == inv_types[inv_type],]
     
-    print(paste("Invader: ", inv_types[inv_type]))
-    result <- tidy_stats(wilcox.test(inv_data$init_A, inv_data$fin_A))
-    print(paste("Total connected pollinator density, p_value: ", result$statistics$p))
-    png(paste("./figures/boxplots/connected_pol_density_i", inv_types[inv_type], ".png", sep = ""))
-    boxplot(c(inv_data$init_A, inv_data$fin_A) ~ c(rep(1, length(inv_data$init_A)), rep(2, length(inv_data$fin_A))))
-    dev.off()
-    
-    result <- tidy_stats(wilcox.test(inv_data$init_avg_indirect_quantity, inv_data$fin_avg_indirect_quantity))
-    print(paste("Visit quantity to indirectly connected native plants, p_value: ", result$statistics$p))
-    png(paste("./figures/boxplots/indirect_visit_quality_i", inv_types[inv_type], ".png", sep = ""))
-    boxplot(c(inv_data$init_avg_indirect_quantity, inv_data$fin_avg_indirect_quantity) ~ c(rep(1, length(inv_data$init_avg_indirect_quantity)), rep(2, length(inv_data$fin_avg_indirect_quantity))))
-    dev.off()
-    
-    result <- tidy_stats(wilcox.test(inv_data$init_avg_indirect_quality, inv_data$fin_avg_indirect_quality))
-    print(paste("Visit quality to indirectly connected native plants, p_value: ", result$statistics$p))
-    png(paste("./figures/boxplots/indirect_visit_quantity_i", inv_types[inv_type], ".png", sep = ""))
-    boxplot(c(inv_data$init_avg_indirect_quality, inv_data$fin_avg_indirect_quality) ~ c(rep(1, length(inv_data$init_avg_indirect_quality)), rep(2, length(inv_data$fin_avg_indirect_quality))))
-    dev.off()
-    cat("\n")
+    if(nrow(inv_data) > 1) {
+      print(paste("Invader: ", inv_types[inv_type]))
+      result <- tidy_stats(wilcox.test(inv_data$init_A, inv_data$fin_A))
+      print(paste("Total connected pollinator density, p_value: ", result$statistics$p))
+      png(paste("./figures/boxplots/connected_pol_density_i", inv_types[inv_type], ".png", sep = ""))
+      boxplot(c(inv_data$init_A, inv_data$fin_A) ~ c(rep(1, length(inv_data$init_A)), rep(2, length(inv_data$fin_A))))
+      dev.off()
+      
+      result <- tidy_stats(wilcox.test(inv_data$init_avg_indirect_quantity, inv_data$fin_avg_indirect_quantity))
+      print(paste("Visit quantity to indirectly connected native plants, p_value: ", result$statistics$p))
+      png(paste("./figures/boxplots/indirect_visit_quality_i", inv_types[inv_type], ".png", sep = ""))
+      boxplot(c(inv_data$init_avg_indirect_quantity, inv_data$fin_avg_indirect_quantity) ~ c(rep(1, length(inv_data$init_avg_indirect_quantity)), rep(2, length(inv_data$fin_avg_indirect_quantity))))
+      dev.off()
+      
+      result <- tidy_stats(wilcox.test(inv_data$init_avg_indirect_quality, inv_data$fin_avg_indirect_quality))
+      print(paste("Visit quality to indirectly connected native plants, p_value: ", result$statistics$p))
+      png(paste("./figures/boxplots/indirect_visit_quantity_i", inv_types[inv_type], ".png", sep = ""))
+      boxplot(c(inv_data$init_avg_indirect_quality, inv_data$fin_avg_indirect_quality) ~ c(rep(1, length(inv_data$init_avg_indirect_quality)), rep(2, length(inv_data$fin_avg_indirect_quality))))
+      dev.off()
+      cat("\n")
+    }
     
     for (net_group in 1:length(net_groups)) {
       
@@ -268,7 +270,7 @@ compare_network_structure <- function() {
         net_data <- net_data[net_data$matID > net_groups[net_group - 1],]
       }
       
-      if (nrow(net_data) > 0) {
+      if (nrow(net_data) > 1) {
         print(paste("Invader: ", inv_types[inv_type], ", Nework group: ", net_groups[net_group]))
         
         result <- tidy_stats(wilcox.test(net_data$init_wNODF, net_data$fin_wNODF))
