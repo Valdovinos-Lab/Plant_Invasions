@@ -81,14 +81,19 @@ compare_init_connected_pol_density()
 
 ### Outputs
 
-```build_network_table_data()``` 
-* Generates ```data/network_table_data.csv``` which includes a suite of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
+```data/network_table_data.csv```
+* A table of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
 
-```compare_invasion_success()``` 
-* Generates a barplot comparing the rate of invasion frequency for each of the three invader types located in ```figures```.
+```figures/barplot``` 
+* Generates a barplot comparing the rate of invasion frequency for each of the three invader types.
 
-```compare_network_structure()``` 
-* Generates boxplots comparing native plant visitation and quantitative network structure before and after species invasions located in ```figures/boxplots``` as well as results from Wilcoxon Rank Sum Tests.
+```figures/boxplots``` 
+* Generates boxplots as well as results from Wilcoxon Rank Sum Tests comparing native plant visitation and quantitative network structure before and after species invasions for each invader type:
+ * ```indirect_visit_quality_i*.png```: compares quality of visits to plant species indirectly connected to the invasive species
+ * ```indirect_visit_quantity_i*.png```: compares quantity of visits to plant species indirectly connected to the invasive species
+ * ```wNODF_i*.png```: compares withe weighted nestedness of the network of foraging preferences
+ * ```wMod_i*.png```: compares withe weighted modularity of the network of foraging preferences
+* Generates boxplots as well as results from a Kruskal-Wallace Rank Sum Testcomparing initial total connected pollinator density for each invader across the following groups for each invader type:
+ * ```init_connected_pol_vs_inv_K_i*.png```: compares the total initial connected pollinator density across invasive species' degree
+ * ```init_connected_pol_vs_inv_success_i*.png```: compares the total initial connected pollinator density to invasion success
 
-```compare_init_connected_pol_density()``` 
-* Generates boxplots comparing the initial total connected pollinator abundance across invasie species degree and invasion success located in ```figures/boxplots``` as well as results from a Kruskal-Wallace Rank Sum Test. 
