@@ -31,29 +31,29 @@ run(networks)
 ***Time Series***
 
 Graphical time series are produced for the first simulation in which a successful invasion occurs writted to the ```figures/timeseries/``` folder. These figures highlight the transient dynamics occuring during the 1200 timesteps directly after species introduction.
-* Plant density (files starting with "plant_density_"
+* ```plant_density_*.png```
   * Includes the density of the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
-* Nectar density (files starting with "nectar_density_"
+* ```nectar_density_*.png```
   * Includes the nectar density of the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
-* Foraging preference (files starting with "foraging_preference_"
+* ```foraging_preference_*.png```
   * Includes the nectar density of the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
-* Visit quantity (files starting with "visit_quantity_"
+* ```visit_quantity_*.png```
   * Includes the quantity of visits recieved by the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
-* Visit quality (files starting with "visit_quality_"
+* ```visit_quality_*.png```
   * Includes the quality of visits recieved by the invasive species (in black) and all native plant species with which it shares a pollinator (in grey)
-* Pollinator density (file starting with "pol_density_"
+* ```pol_density_*.png```
   * Includes the density of all pollinator species visiting the invasive plant (in black) and all other pollinator species (in grey)
 
 ***Numerical Data***
 
 The numerical output from these simulations will be written to the ```data/``` folder. In the following files, the first half of columns are from time step 10000 just before species invasion after the original network has equilibrated, and the second half of columns are from time step 20000 at the end of the simulation. This data is used later in the analysis.
-* Plant data (files starting with "P_")
+* Plant data: ```P_*.csv```
   * Each row is a unique plant species in the network, the first row is the invasive species
   * Columns are as follows: (extinct, plant density, reward density, total pollination events, quantity of visits, quality of visits, foraging effort) x2
-* Pollinator data (files starting with "A_"
+* Pollinator data: ```A_*.csv```
   * Each row is a unique pollinator species in the network
   * Columns are as follows: (extinct, pollinator density, total visitation events) x2
-* Pollinator foraging preference data (files starting with "Alpha_")
+* Pollinator foraging preference data: ```Alpha_*.csv```
   * Each row is a uniqe plant species in the network, the first row is the invasive species x2
   * Each column is a unique pollinator species in the network
   * Values are the proportional foraging effor a pollinator allocates to that plant
@@ -82,13 +82,13 @@ compare_init_connected_pol_density()
 ### Outputs
 
 ```build_network_table_data()``` 
-* Generates "network_table_data.csv" which includes a suite of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
+* Generates ```data/network_table_data.csv``` which includes a suite of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
 
 ```compare_invasion_success()``` 
-* Generates a barplot comparing the rate of invasion frequency for each of the three invader types.
+* Generates a barplot comparing the rate of invasion frequency for each of the three invader types located in ```figures```.
 
 ```compare_network_structure()``` 
-* Generates boxplots comparing native plant visitation and quantitative network structure before and after species invasions as well as results from Wilcoxon Rank Sum Tests.
+* Generates boxplots comparing native plant visitation and quantitative network structure before and after species invasions located in ```figures/boxplots``` as well as results from Wilcoxon Rank Sum Tests.
 
 ```compare_init_connected_pol_density()``` 
-* Generates boxplots comparing the initial total connected pollinator abundance across invasie species degree and invasion success as well as results from a Kruskal-Wallace Rank Sum Test. 
+* Generates boxplots comparing the initial total connected pollinator abundance across invasie species degree and invasion success located in ```figures/boxplots``` as well as results from a Kruskal-Wallace Rank Sum Test. 
