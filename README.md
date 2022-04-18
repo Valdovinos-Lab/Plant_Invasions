@@ -85,7 +85,8 @@ compare_init_connected_pol_density()
 * A table of network statistics for each simulation before and after species invasion, as well as characteristics of the invasive species. 
 
 ```figures/barplot``` 
-* Generates a barplot comparing the rate of invasion frequency for each of the three invader types.
+* Generates a barplot comparing the rate of invasion frequency between each of the three invader types.
+  * ```invasion_success_rate.png```
 
 ```figures/boxplots``` 
 * Generates boxplots as well as results from Wilcoxon Rank Sum Tests comparing the following before and after species invasions for each invader type:
