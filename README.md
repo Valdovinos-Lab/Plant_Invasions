@@ -4,18 +4,18 @@ Code for "Fewer but higher quality of pollinator visits determines plant invasio
 
 As described in the paper, this experiment simulates the introduction of a single invasive plant species into a stable plant-pollinatior network. We analyze which characteristics of invasive species are most advantageous for their establishment in native communities and what is the effect of species invsions on the network's quantitative visitation structure. 
 
-Included are 1200 predefined networks generated through Thebalt and Fontain's stochastic algorithm. These are composed of three groups of 400 network centered on three points along the empirical species richness and connectance relationship (details here).
+Included are 1200 predefined networks generated with Thebalt and Fontaine's (2010) stochastic algorithm. These are composed of three groups of 400 networks centered on three points along the empirical species richness and connectance relationship (S=40 C=0.25, S=90 C=0.15, S=200 C=0.06). Half of the networks in each set are nested and the other half are non-nested. Finally, each network maintains the empirically observed mean ratio of pollinators to plant species of 0.25.
 
 ## Simulating species invasions
 
-To perform a species invasion, run ```run(networks).m``` in matlab with the range of neworks you want to perform the simulation on as an input. To limit computational runtime, species invasions are only performed with the parameter values on which we based our results: 
-* Mortality case 3 (where plants and animals have a low mortality) 
-* Invader types 3 (specialists that are high reward producing), 4 (specialists that are high reward and pollen producing), and 8 (generalists that are high reward and pollen producing)
-* Attachment algorithm 1 (random attachment), because the results observed for each attachment algorithm were qualitatively similar. 
+To perform a species invasion, run ```run.m``` in matlab with an array of network IDs as input. To limit computational runtime, species invasions are only performed with the parameter values used in our analysis: 
+* Mortality case 3: all plants and animals have a low mortality 
+* Attachment algorithm 1: random attachment
+* Invader types 3: specialists that are high reward producing, 4: specialists that are high reward and pollen producing, and 8: generalists that are high reward and pollen producing
 
 ```matlab
-% To perform the simulation on a single network
-networks = 1 
+% To perform the simulation once on network 5.
+networks = 5
 
 % To perform the simulation on a select range of networks.
 networks = [1, 2, 3, 801, 802, 803] 
@@ -60,11 +60,11 @@ run(networks)
 
 ## Analysis 
 
-To reproduce the analysis from our experiment, run ```run_analysis.R``` in R. In this script there is again a spot to specify which networks were included in the analysis.
+To reproduce the analysis from our experiment, run ```run_analysis.R``` in R. In this script there is again a spot to specify which networks to include in the analysis.
 
 ``` R
 # define the networks for which we are performing the analysis
-networks <- c(1, 2, 3, 401, 402, 403, 801, 802, 803) #ENTER YOUR NETWORKS HERE
+networks <- c(1, 2, 3, 801, 802, 803) #ENTER YOUR NETWORKS HERE
 
 # build a table of all relevant network statistics characterizing the invasion
 build_network_table_data(networks)
