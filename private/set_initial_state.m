@@ -1,10 +1,10 @@
-function [initial_state] = set_initial_state(data)
+function [initial_state] = set_initial_state()
 
 % Define the initial abundances of plants, nectar, animals, and alphas
 
 global network_metadata
 
-[row, col] = size(data);
+[row, col] = size(network_metadata.data);
 
 % set initial state will all data in a vector
 mean = 0.5;
@@ -13,7 +13,7 @@ values = uniform_rand(mean, var, (2 * row) + col, 1);
 initial_plants = values(1:row);
 initial_nectar = values(row + 1:2 * row); 
 initial_animals = values((2 * row) + 1:end);
-initial_alphas = data;
+initial_alphas = network_metadata.data;
 
 % ensure that alien data is 0 because invasion is not yet occurring
 initial_plants(1) = 0;
