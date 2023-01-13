@@ -1,10 +1,12 @@
-function [data] = invasion_setup(network_data, inv_type, link_case)
+function [data] = invasion_setup(network_data, file_name)
 
 % Function that performs the introduction of 1 plant species
 % to a network. Introduced species can be specialists (inv_type=1:4) 
 % or generalists (inv_type=5:8), and they can link randomly (link_case=1), to
 % generalists (link_case=2), or to specialists (link_case=3) 
 
+link_case = file_name(3);
+inv_type = file_name(4);
 [row, col] = size(network_data);
     
 %%%%%%%%%%%%%% Defining degree of native plants and animals %%%%%%%%%%%%%%%
