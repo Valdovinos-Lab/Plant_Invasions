@@ -28,9 +28,7 @@ network_data = network_data(index_p, index_a);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Perform Invasion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % set up invasion
-link_case = file_name(3);
-inv_type = file_name(4);
-[network_data] = invasion_setup(network_data, inv_type, link_case);
+[network_data] = invasion_setup(network_data, file_name);
 
 % create jacobian matrix
 J_pattern = jacobian_pattern(network_data);
