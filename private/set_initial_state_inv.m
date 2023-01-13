@@ -1,4 +1,4 @@
-function [initial_state] = set_initial_state_inv(data, final_parameters)
+function [initial_state] = set_initial_state_inv(final_parameters)
 
 % Redefines an initial state for the integrater once the system has reached
 % equilibrium right before the invasion occurs
@@ -9,7 +9,7 @@ global network_metadata extinct_level_p
 [p, n, a, alpha] = expand(final_parameters);
 
 % create an alpha submatrix with only animals the alien links with
-alpha_focal = alpha(:, logical(data(1, :)));
+alpha_focal = alpha(:, logical(network_metadata.data(1, :)));
 
 % create matrix indicating which plant is the focal partner of each animal
 focal_max = alpha_focal == ones(size(alpha_focal)) * diag(max(alpha_focal));
@@ -21,7 +21,7 @@ alpha_focal(focal_max) = alpha_focal(focal_max) - 0.0001;
 alpha_focal(1,:) = 0.0001;
 
 % redefine alpha matrix
-alpha(:,logical(data(1,:))) = alpha_focal;
+alpha(:,logical(network_metadata.data(1,:))) = alpha_focal;
 
 % redefine initial alphas
 initial_alphas = alpha(network_metadata.indices);
