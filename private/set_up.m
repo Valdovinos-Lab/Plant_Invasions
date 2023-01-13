@@ -122,7 +122,7 @@ beta(1) = inv_beta * beta(1);
 epsilon(1) = inv_epsilon * epsilon(1);
 
 % create network metadata
-network_metadata = make_metadata(data, e, mu_p, mu_a, c, b, u, w, beta, G, g, phi, tau, epsilon);
+network_metadata = make_metadata(sparse(data), e, mu_p, mu_a, c, b, u, w, beta, G, g, phi, tau, epsilon);
 
 end
 
