@@ -17,7 +17,6 @@ network_metadata = set_up(data, file_name);
 
 % other information for integration
 tspan = [0 10000];
-data = sparse(data);
 final_parameters = [];
 
 % run simulation twice
@@ -28,13 +27,13 @@ for simulation = 1:2
     % define initial state
     switch simulation
         case 1
-            [initial_state] = set_initial_state(data);
+            [initial_state] = set_initial_state();
         case 2
-            [initial_state] = set_initial_state_inv(data, final_parameters);        
+            [initial_state] = set_initial_state_inv(final_parameters);        
     end
     
     % integrate network data
-    [final_parameters] = integrate(data, file_name, initial_state, tspan);
+    [final_parameters] = integrate(file_name, initial_state, tspan);
     
     % determine final densities and foraging efforts
     [p, n, a, alpha] = expand(final_parameters);
