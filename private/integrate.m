@@ -1,4 +1,4 @@
-function [final_parameters, generate_figs] = integrate(data, file_name, initial_state, tspan)
+function [final_parameters] = integrate(data, file_name, initial_state, tspan)
 
     global J_pattern simulation extinct_level_p network_metadata 
 
