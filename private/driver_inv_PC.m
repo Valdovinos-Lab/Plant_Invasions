@@ -35,7 +35,7 @@ for simulation = 1:2
     end
     
     % integrate network data
-    [final_parameters, generate_figs] = integrate(data, file_name, initial_state, tspan, generate_figs);
+    [final_parameters, generate_figs] = integrate(data, file_name, initial_state, tspan);
     
     % determine final densities and foraging efforts
     [p, n, a, alpha] = expand(final_parameters);
