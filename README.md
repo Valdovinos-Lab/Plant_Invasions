@@ -1,6 +1,6 @@
 # plant_invasions
 
-Code for "Fewer but higher quality of pollinator visits determines plant invasion success in simulated plant-pollinator networks".
+Code for "Transient dynamics in plant–pollinator networks: fewer but higher quality of pollinator visits determines plant invasion success".
 
 As described in the paper, this experiment simulates the introduction of a single invasive plant species into a stable plant-pollinatior network. We analyze which characteristics of invasive species are most advantageous for their establishment in native communities and what is the effect of species invsions on the network's quantitative visitation structure. 
 
