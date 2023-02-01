@@ -18,6 +18,7 @@ network_metadata = set_up(data, file_name);
 % other information for integration
 tspan = [0 10000];
 final_parameters = [];
+generate_figs = 0;
 
 % run simulation twice
 % 1st run: allow native population to equilibriate
@@ -33,7 +34,7 @@ for simulation = 1:2
     end
     
     % integrate network data
-    [final_parameters] = integrate(file_name, initial_state, tspan);
+    [final_parameters, generate_figs] = integrate(file_name, initial_state, tspan, generate_figs);
     
     % determine final densities and foraging efforts
     [p, n, a, alpha] = expand(final_parameters);
