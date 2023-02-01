@@ -1,4 +1,4 @@
-function [final_parameters] = integrate(file_name, initial_state, tspan)
+function [final_parameters, generate_figs] = integrate(file_name, initial_state, tspan, generate_figs)
 
     global J_pattern simulation extinct_level_p network_metadata 
 
@@ -11,6 +11,16 @@ function [final_parameters] = integrate(file_name, initial_state, tspan)
     
     % access final row of parameter values
     final_parameters = parameters(end,:)';
-
+    
+    % plot time series follow invasion once at the first time a successful invasion occures
+     [plants, nectar, animals, alphas] = expand_full(parameters);
+     if (generate_figs == 0)
+         if (simulation == 2) 
+             if (plants(end, 1) > extinct_level_p)
+                 plot_timeseries(file_name, time, plants, nectar, animals, alphas, row, col);
+                 generate_figs = 1;
+             end
+         end
+     end
 end
 
