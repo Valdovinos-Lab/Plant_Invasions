@@ -4,6 +4,9 @@ function [] = plot_timeseries(file_name, time, plants, nectar, animals, alphas, 
     
     % make directory for figures
     mkdir('figures/time_series/')
+    mkdir('figures/barplot/')
+    mkdir('figures/boxplots/')
+    mkdir('figures/scatterplot/')
 
     % access relevant paramerers from the metadata        
     tau     = network_metadata.tau ;
