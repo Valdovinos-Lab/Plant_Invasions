@@ -1,6 +1,9 @@
 function [] = plot_timeseries(file_name, time, plants, nectar, animals, alphas, n, m)
 
     global network_metadata
+    
+    % make directory for figures
+    mkdir('figures/time_series/')
 
     % access relevant paramerers from the metadata        
     tau     = network_metadata.tau ;
